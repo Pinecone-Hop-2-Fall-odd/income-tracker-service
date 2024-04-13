@@ -36,7 +36,7 @@ const login = async (req, res) => {
   if (!oneUser) {
     res.status(405).json({ massage: "User not found" });
   } else {
-    if (bcrypt.compare(body.password)) {
+    if (bcrypt.compare(body.password, oneUser.password)) {
       res.status(200).json({ user: oneUser });
       return;
     } else {
@@ -47,18 +47,3 @@ const login = async (req, res) => {
 };
 module.exports = {getUser, createUser, login};
 
-// export const login = async (req, res) => {
-//   const { username, password } = req.body;
-
-//   try {
-//     const user = await UserModel.findOne({ email: username });
-
-//     if (bcrypt.compare(user.password, password)) {
-//       res.status(200).json({ uid: user._id });
-//     } else {
-//       res.status(401).json({ message: "failed" });
-//     }
-//   } catch (err) {
-//     res.status(401).json({ message: "failed" });
-//   }
-// };

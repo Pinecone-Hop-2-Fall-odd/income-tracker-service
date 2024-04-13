@@ -1,15 +1,17 @@
+const express = require("express");
 const cors = require("cors");
-const userRouter  = require("./routers/user-router.js");
 const mongoose = require("mongoose");
-const express = require("express")
+const userRouter  = require("./routers/user-router.js");
+const transactionRoute = require ("../income-tracker-service/routers/transaction-router.js")
 
-const PORT = 8080;
 const app = express();
-
-app.use(cors());
+const PORT = 8080;
 app.use(express.json());
+app.use(cors());
+
 
 app.use(userRouter);
+app.use(transactionRoute)
 
 const connectDb = async () => {
   await mongoose.connect(
