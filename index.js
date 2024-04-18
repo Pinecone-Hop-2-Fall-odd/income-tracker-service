@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const userRouter  = require("./routers/user-router.js");
-const transactionRoute = require ("../income-tracker-service/routers/transaction-router.js")
+const transactionRoute = require ("./routers/transaction-router.js")
 
 const app = express();
 const PORT = 8080;
